@@ -31,7 +31,7 @@ public class ComplexShape extends Application {
       
     // aqui se crean las lineas 
     MoveTo moveTo=new MoveTo(200, 200); //este es el punto inical para comenzar a dibujar la linea
-
+    LineTo line4 = new LineTo(200, 150);
     LineTo line1 = new LineTo(200, 100);  //segundos punto
     LineTo line2 = new LineTo(150, 150);  //tercer punto
     LineTo line3 = new LineTo(200, 150);  //cuarto punto
@@ -42,7 +42,7 @@ public class ComplexShape extends Application {
 
     //Adding all the elements to the path 
     path.getElements().add(moveTo); 
-    path.getElements().addAll(line1, line2, line3);        
+    path.getElements().addAll(line4,line1, line2, line3);        
 
 
 //    en esta parte se crean los circulos para modificar el numero  
@@ -96,7 +96,7 @@ public class ComplexShape extends Application {
     c3.setOnMousePressed(pressMouse(c3));
     c3.setOnMouseDragged(dragMouse(c3, line2));
     c4.setOnMousePressed(pressMouse(c4));
-    c4.setOnMouseDragged(dragMouse(c4, line3));
+    c4.setOnMouseDragged(dragMouseFinal(c4, line3, line4));
 
             
       
@@ -185,6 +185,37 @@ public class ComplexShape extends Application {
                     c.setLayoutY(m_nY);
                     l.setX(event.getSceneX());
                     l.setY(event.getSceneY());
+
+                    // get the latest mouse coordinate.
+                    m_nMouseX = event.getSceneX();
+                    m_nMouseY = event.getSceneY();
+                }
+            }
+        };
+        return dragHandler;
+    }
+   
+   EventHandler<MouseEvent> dragMouseFinal(Circle c, LineTo l1, LineTo l2) {
+        EventHandler<MouseEvent> dragHandler = new EventHandler<MouseEvent>() {
+
+            public void handle(MouseEvent event) {
+                if (event.getButton() == MouseButton.PRIMARY) {
+                    // find the delta coordinates by subtracting the new mouse
+                    // coordinates with the old.
+                    double deltaX = event.getSceneX() - m_nMouseX;
+                    double deltaY = event.getSceneY() - m_nMouseY;
+
+                    // add the delta coordinates to the node coordinates.
+                    m_nX += deltaX;
+                    m_nY += deltaY;
+
+                    // set the layout for the draggable node.
+                    c.setLayoutX(m_nX);
+                    c.setLayoutY(m_nY);
+                    l1.setX(event.getSceneX());
+                    l1.setY(event.getSceneY());
+                    l2.setX(event.getSceneX());
+                    l2.setY(event.getSceneY());
 
                     // get the latest mouse coordinate.
                     m_nMouseX = event.getSceneX();
