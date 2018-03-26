@@ -12,7 +12,9 @@ import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path; 
          
 public class ComplexShape extends Application { 
-   
+
+    //hola
+    
     double m_nX = 0;
     double m_nY = 0;
     double m_nMouseX = 0;
