@@ -6,6 +6,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Ellipse;
 import javafx.stage.Stage; 
 import javafx.scene.shape.LineTo; 
 import javafx.scene.shape.MoveTo; 
@@ -45,6 +46,10 @@ public class ComplexShape extends Application {
     path.getElements().addAll(line4,line1, line2, line3);        
 
 
+    
+    MoveTo ;
+   
+    
 //    en esta parte se crean los circulos para modificar el numero  
 
         Circle c1 = new Circle();
@@ -83,8 +88,12 @@ public class ComplexShape extends Application {
     //se crea el grupo para generar el numero
     Group root = new Group(path);
     circle.getChildren().addAll(c1,c2,c3,c4);
-    root.getChildren().addAll(circle);
-
+    root.getChildren().addAll(circle, elipse);
+    
+    
+    //opcion modificar
+    
+    circle.setVisible(true);
     
     //se toma la posicion del circulo al cl1ckearlo
     c1.setOnMousePressed(pressMouse(c1));
